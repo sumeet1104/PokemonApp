@@ -1,5 +1,12 @@
 ## Basic React App using Context API, Hooks and Redux
 
+## KEY FEATURES
+
+- handle local state with useState
+- building a global state with the Context API
+- rewrite and replace useState with useReducer
+- do side-effects within useEffect.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
