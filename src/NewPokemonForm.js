@@ -2,25 +2,18 @@ import React, { useContext, useState } from "react";
 import PokemonContext from "./PokemonContext";
 
 const PokemonForm = () => {
-  const {
-    pokemons,
-    setPokemons,
-    capturedPokemons,
-    setCapturedPokemons,
-  } = useContext(PokemonContext);
+  const { addPokemon } = useContext(PokemonContext);
 
   const [pokemonName, setPokemonName] = useState("");
 
   const changeHandler = (event) => setPokemonName(event.target.value);
 
-  const addPokemon = (pokemon) => setPokemons([...pokemons, pokemon]);
-
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    addPokemon({
-      id: generateID(),
-      name: pokemonName,
-    });
+    const payload = { id: generateID(), name: pokemonName };
+    addPokemon(payload);
+    console.log("Form Submitted");
+    console.log(payload);
     setPokemonName("");
   };
 

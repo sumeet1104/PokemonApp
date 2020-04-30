@@ -1,28 +1,38 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import PokemonContext from "./PokemonContext";
 
 const PokemonList = () => {
-  const {
-    pokemons,
-    setPokemons,
-    capturedPokemons,
-    setCapturedPokemons,
-  } = useContext(PokemonContext);
-  console.log(pokemons);
+  const { state, addPokemons, capture } = useContext(PokemonContext);
 
-  const removefromPokemonList = (removedPokemon) =>
-    pokemons.filter((pokemon) => pokemon !== removedPokemon);
+  //   console.log(pokemons);
 
-  const capture = (pokemon) => () => {
-    setCapturedPokemons([...capturedPokemons, pokemon]);
-    setPokemons(removefromPokemonList(pokemon));
-  };
+  // REMOVED WHILE USING REDUCER
+  //   const removefromPokemonList = (removedPokemon) =>
+  //     pokemons.filter((pokemon) => pokemon !== removedPokemon);
+
+  //   const capture = (pokemon) => () => {
+  //     setCapturedPokemons([...capturedPokemons, pokemon]);
+  //     setPokemons(removefromPokemonList(pokemon));
+  //   };
+
+  const url = "https://pokeapi.co/api/v2/pokemon";
+
+  useEffect(() => {
+    const fetchPokemons = async () => {
+      const response = await fetch(url);
+      const data = await response.json();
+      console.log(data.results);
+      addPokemons(data.results);
+    };
+
+    fetchPokemons();
+  }, []);
 
   return (
     <div className="pokemon-list">
       <h2>Pokemon Lists</h2>
-
-      {pokemons.map((pokemon) => (
+      {console.log(state)}
+      {state.pokemons.map((pokemon) => (
         <div key={pokemon.id}>
           <div>
             <span>{pokemon.name}</span>

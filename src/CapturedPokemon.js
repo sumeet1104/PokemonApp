@@ -2,21 +2,18 @@ import React, { useContext } from "react";
 import PokemonContext from "./PokemonContext";
 
 const CapturedPokemon = () => {
-  const {
-    pokemons,
-    setPokemons,
-    capturedPokemons,
-    setCapturedPokemons,
-  } = useContext(PokemonContext);
+  const { capturedPokemons, release } = useContext(PokemonContext);
 
-  console.log(capturedPokemons);
-  const removefromCapturedPokemonList = (removedPokemon) =>
-    capturedPokemons.filter((pokemon) => pokemon !== removedPokemon);
+  //   console.log(capturedPokemons);
 
-  const release = (pokemon) => () => {
-    setCapturedPokemons(removefromCapturedPokemonList(pokemon));
-    setPokemons([...pokemons, pokemon]);
-  };
+  // REMOVED WHILE USING REDUCER
+  //   const removefromCapturedPokemonList = (removedPokemon) =>
+  //     capturedPokemons.filter((pokemon) => pokemon !== removedPokemon);
+
+  //   const release = (pokemon) => () => {
+  //     setCapturedPokemons(removefromCapturedPokemonList(pokemon));
+  //     setPokemons([...pokemons, pokemon]);
+  //   };
 
   return (
     <div className="pokedex">
